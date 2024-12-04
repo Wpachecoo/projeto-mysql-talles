@@ -113,3 +113,65 @@ CREATE TABLE reviews (
   FOREIGN KEY (order_id) REFERENCES orders (order_id),
   FOREIGN KEY (establishment_id) REFERENCES establishments (establishment_id)
 );
+-- Inserindo dados na tabela categories
+INSERT INTO categories (name, description, category_type, status)
+VALUES 
+('Restaurantes', 'Comidas variadas', 'FOOD', 'ACTIVE'),
+('Bares', 'Bebidas e aperitivos', 'DRINK', 'ACTIVE'),
+('Outros', 'Serviços diversos', 'OTHER', 'ACTIVE');
+
+-- Inserindo dados na tabela addresses
+INSERT INTO addresses (address_type, street, street_number, neighborhood, city, state, zip_code, status)
+VALUES 
+('HOME', 'Rua das Flores', '123', 'Centro', 'São Paulo', 'SP', '01000-000', 'ACTIVE'),
+('WORK', 'Avenida Paulista', '1000', 'Bela Vista', 'São Paulo', 'SP', '01310-000', 'ACTIVE'),
+('OTHER', 'Praça da Liberdade', '50', 'Liberdade', 'São Paulo', 'SP', '01503-010', 'ACTIVE');
+
+-- Inserindo dados na tabela payment_methods
+INSERT INTO payment_methods (method_name, status)
+VALUES 
+('Cartão de Crédito', 'ACTIVE'),
+('Dinheiro', 'ACTIVE'),
+('Pix', 'ACTIVE');
+
+-- Inserindo dados na tabela establishments
+INSERT INTO establishments (name, phone, category_id, address_id, status)
+VALUES 
+('Restaurante Bom Gosto', '1122334455', 1, 1, 'ACTIVE'),
+('Bar dos Amigos', '5566778899', 2, 2, 'ACTIVE');
+
+-- Inserindo dados na tabela products
+INSERT INTO products (name, description, price, establishment_id, status)
+VALUES 
+('Hambúrguer Especial', 'Delicioso hambúrguer artesanal', 25.90, 1, 'ACTIVE'),
+('Caipirinha', 'Bebida típica brasileira', 15.00, 2, 'ACTIVE');
+
+-- Inserindo dados na tabela additional_items
+INSERT INTO additional_items (name, price, establishment_id, status)
+VALUES 
+('Queijo extra', 3.50, 1, 'ACTIVE'),
+('Gelo adicional', 1.00, 2, 'ACTIVE');
+
+-- Inserindo dados na tabela orders
+INSERT INTO orders (total_value, delivery_address_id, order_status)
+VALUES 
+(50.90, 1, 'PENDING'),
+(30.00, 2, 'PENDING');
+
+-- Inserindo dados na tabela order_items
+INSERT INTO order_items (order_id, product_id, quantity, unit_price, total_price)
+VALUES 
+(1, 1, 2, 25.90, 51.80),
+(2, 2, 2, 15.00, 30.00);
+
+-- Inserindo dados na tabela payments
+INSERT INTO payments (order_id, payment_method_id, amount, payment_status)
+VALUES 
+(1, 1, 51.80, 'PENDING'),
+(2, 3, 30.00, 'CONFIRMED');
+
+-- Inserindo dados na tabela reviews
+INSERT INTO reviews (order_id, establishment_id, rating, comment, status)
+VALUES 
+(1, 1, 5, 'Excelente hambúrguer!', 'ACTIVE'),
+(2, 2, 4, 'Caipirinha boa, mas poderia ser mais forte.', 'ACTIVE');	
